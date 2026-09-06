@@ -49,13 +49,19 @@ The resulting structure will look roughly like:
 
 ### 3. Add your first source
 
-Put your first document into:
+1. **Add a source**: copy it into `raw/`. Preserve its original bytes and record origin, dates, version, and capture limitations in an adjacent `.source.md` file. ⚠️
+2. **INGEST**: open this repository in Codex and ask:
+    ```Read AGENTS.md. INGEST raw/my-first-source.md.
+    Show changes and run scoped LINT. Do not commit.
+    Optionally generate a fingerprinted request:
 
-```
-raw/
-```
-
-Then ask Codex to **INGEST** it.
+    python3 scripts/prepare_ingest.py raw/my-first-source.md```
+3. **QUERY**:
+    ```Read AGENTS.md. QUERY: <question>.
+    Cite KB evidence, identify gaps, and do not modify files.```
+4. **LINT**:
+    ```Read AGENTS.md. LINT the KB and report findings without modifying files.```
+5. **PROMOTE**: prepare and sanitize the candidate inside its Project KB, verify it, obtain explicit human approval of the exact content, then transfer and ingest the approved artifact.
 
 Codex will analyze the source, extract relevant concepts and integrate them into the existing `wiki/` instead of simply creating another document summary.
 
